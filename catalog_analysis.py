@@ -107,3 +107,24 @@ def catalog_age_stats(
 def duration_in_hours(minutes: int) -> str:
     """Преобразовать длительность в строку вида «2ч 35м»."""
     return f"{minutes // 60}ч {minutes % 60}м"
+
+
+# === Этап 2. Условия и match ==================================================
+
+
+def rating_tier(rating: float) -> str:
+    """Вернуть текстовую категорию рейтинга."""
+    if rating >= 9:
+        return "шедевр"
+    return "хорошо" if rating >= 7 else "средне" if rating >= 5 else "слабо"
+
+
+def decade_label(year: int) -> str:
+    """Вернуть категорию фильма по году выпуска через match."""
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if year >= 2015:
+            return "недавние"
+        case _:
+            return "старые"
