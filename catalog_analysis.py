@@ -234,3 +234,26 @@ def top_rated_above_average(movies: list[dict]) -> dict[str, float]:
         for movie in movies
         if movie["rating"] > average
     }
+
+
+# === Этап 7. Множества ========================================================
+
+
+def all_genres(movies: list[dict]) -> set[str]:
+    """Вернуть объединение жанров всех фильмов каталога."""
+    genres: set[str] = set()
+    for movie in movies:
+        genres |= movie["genres"]
+    return genres
+
+
+def common_actors(movie1: dict, movie2: dict) -> set[str]:
+    """Вернуть актёров, снявшихся в обоих фильмах."""
+    return set(movie1["actors"]) & set(movie2["actors"])
+
+
+def genres_only_in_one(movies_a: list[dict], movies_b: list[dict]) -> set[str]:
+    """Вернуть жанры первого набора фильмов, отсутствующие во втором."""
+    genres_a = all_genres(movies_a)
+    genres_b = all_genres(movies_b)
+    return genres_a - genres_b
