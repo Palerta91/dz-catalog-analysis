@@ -184,3 +184,22 @@ def format_report_line(movie: dict) -> str:
         f'"{title}" ({movie["year"]}) — {movie["rating"]}/10, '
         f"{duration}, жанры: {genres}"
     )
+
+
+# === Этап 5. Списки ===========================================================
+
+
+def titles_sorted_by_rating(movies: list[dict]) -> list[str]:
+    """Вернуть названия фильмов по убыванию рейтинга без изменения каталога."""
+    return [
+        movie["title"]
+        for movie in sorted(movies, key=lambda movie: movie["rating"], reverse=True)
+    ]
+
+
+def top_n_by_rating(movies: list[dict], n: int = 3) -> list[tuple[str, float]]:
+    """Вернуть n пар «название, рейтинг» для фильмов с лучшим рейтингом."""
+    return [
+        (movie["title"], movie["rating"])
+        for movie in sorted(movies, key=lambda movie: movie["rating"], reverse=True)[:n]
+    ]
