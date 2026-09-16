@@ -276,3 +276,33 @@ def total_duration_above_rating(
     return sum(
         movie["duration_min"] for movie in movies if movie["rating"] > min_rating
     )
+
+
+# === Этап 9. Итоговый отчёт ===================================================
+
+
+def build_report(movies: list[dict]) -> None:
+    """Напечатать итоговый отчёт по каталогу фильмов."""
+    print(f"Средний рейтинг: {average_rating(movies)}")
+    print(f"Средний возраст фильмов: {catalog_age_stats(movies)[2]} лет\n")
+
+    print("Топ-3 фильма:")
+    for title, _ in top_n_by_rating(movies):
+        movie = next(movie for movie in movies if movie["title"] == title)
+        print(f"  {format_report_line(movie)}")
+    print()
+
+    print("Фильмов по жанрам:")
+    genre_counts = count_by_genre(movies)
+    sorted_counts = sorted(
+        genre_counts.items(), key=lambda item: (-item[1], item[0])
+    )
+    for genre, count in sorted_counts:
+        print(f"  {genre} — {count}")
+    print()
+
+    print(f"Все жанры каталога: {', '.join(sorted(all_genres(movies)))}")
+
+
+if __name__ == "__main__":
+    build_report(movies)
