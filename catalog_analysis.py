@@ -128,3 +128,35 @@ def decade_label(year: int) -> str:
             return "недавние"
         case _:
             return "старые"
+
+
+# === Этап 3. Циклы ============================================================
+
+
+def count_long_movies(movies: list[dict], threshold: int = 120) -> int:
+    """Посчитать фильмы с длительностью больше заданного порога."""
+    count = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+    return count
+
+
+def demo_skip_non_comedy(movies: list[dict]) -> None:
+    """Вывести названия фильмов, не относящихся к comedy."""
+    for movie in movies:
+        if "comedy" in movie["genres"]:
+            continue
+        print(movie["title"])
+
+
+def demo_find_first_masterpiece(movies: list[dict]) -> None:
+    """Вывести первый фильм с рейтингом выше 9.0 или сообщение об отсутствии."""
+    index = 0
+    while index < len(movies):
+        if movies[index]["rating"] > 9.0:
+            print(movies[index]["title"])
+            break
+        index += 1
+    else:
+        print("Шедевров не найдено")
