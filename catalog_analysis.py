@@ -257,3 +257,22 @@ def genres_only_in_one(movies_a: list[dict], movies_b: list[dict]) -> set[str]:
     genres_a = all_genres(movies_a)
     genres_b = all_genres(movies_b)
     return genres_a - genres_b
+
+
+# === Этап 8. Итераторы и генераторы ===========================================
+
+
+def iter_high_rated(movies: list[dict], min_rating: float = 8.0):
+    """Лениво вернуть фильмы с рейтингом не ниже min_rating."""
+    for movie in movies:
+        if movie["rating"] >= min_rating:
+            yield movie
+
+
+def total_duration_above_rating(
+    movies: list[dict], min_rating: float = 7.0
+) -> int:
+    """Вернуть общую длительность фильмов с рейтингом выше min_rating."""
+    return sum(
+        movie["duration_min"] for movie in movies if movie["rating"] > min_rating
+    )
