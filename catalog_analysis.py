@@ -203,3 +203,34 @@ def top_n_by_rating(movies: list[dict], n: int = 3) -> list[tuple[str, float]]:
         (movie["title"], movie["rating"])
         for movie in sorted(movies, key=lambda movie: movie["rating"], reverse=True)[:n]
     ]
+
+
+# === Этап 6. Словари ==========================================================
+
+
+def count_by_genre(movies: list[dict]) -> dict[str, int]:
+    """Вернуть число фильмов по каждому жанру через dict.get()."""
+    counts: dict[str, int] = {}
+    for movie in movies:
+        for genre in movie["genres"]:
+            counts[genre] = counts.get(genre, 0) + 1
+    return counts
+
+
+def actor_filmography(movies: list[dict]) -> dict[str, list[str]]:
+    """Вернуть фильмографию каждого актёра."""
+    filmography: dict[str, list[str]] = {}
+    for movie in movies:
+        for actor in movie["actors"]:
+            filmography.setdefault(actor, []).append(movie["title"])
+    return filmography
+
+
+def top_rated_above_average(movies: list[dict]) -> dict[str, float]:
+    """Вернуть рейтинг фильмов, которые выше среднего по каталогу."""
+    average = average_rating(movies)
+    return {
+        movie["title"]: movie["rating"]
+        for movie in movies
+        if movie["rating"] > average
+    }
