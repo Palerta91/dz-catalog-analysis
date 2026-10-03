@@ -308,8 +308,10 @@ def run_generator_demo(movies: list[dict]) -> None:
 
 def build_report(movies: list[dict]) -> None:
     """Напечатать итоговый отчёт по каталогу фильмов."""
+    print("ОТЧЕТ ПО КАТАЛОГУ")
     print(f"Средний рейтинг: {average_rating(movies)}")
-    print(f"Средний возраст фильмов: {catalog_age_stats(movies)[2]} лет\n")
+    average_age = catalog_age_stats(movies)[2]
+    print(f"Средний возраст фильмов: {average_age} лет\n")
 
     print("Топ-3 фильма:")
     for title, _ in top_n_by_rating(movies):
@@ -326,7 +328,8 @@ def build_report(movies: list[dict]) -> None:
         print(f"  {genre} — {count}")
     print()
 
-    print(f"Все жанры каталога: {', '.join(sorted(all_genres(movies)))}")
+    genres = ", ".join(sorted(all_genres(movies)))
+    print(f"Все жанры каталога: {genres}")
 
 
 if __name__ == "__main__":
