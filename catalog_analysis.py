@@ -116,7 +116,9 @@ def rating_tier(rating: float) -> str:
     """Вернуть текстовую категорию рейтинга."""
     if rating >= 9:
         return "шедевр"
-    return "хорошо" if rating >= 7 else "средне" if rating >= 5 else "слабо"
+    elif rating >= 7:
+        return "хорошо"
+    return "средне" if rating >= 5 else "слабо"
 
 
 def decade_label(year: int) -> str:
