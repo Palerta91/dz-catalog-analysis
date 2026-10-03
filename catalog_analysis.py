@@ -293,6 +293,16 @@ def total_duration_above_rating(
     )
 
 
+def run_generator_demo(movies: list[dict]) -> None:
+    """Показать работу генератора фильмов."""
+    print("Фильмы с рейтингом не ниже 8.0:")
+    for movie in iter_high_rated(movies):
+        print(f"  {format_report_line(movie)}")
+
+    total_duration = total_duration_above_rating(movies)
+    print(f"Суммарная длительность фильмов с рейтингом выше 7: {total_duration} мин.\n")
+
+
 # === Этап 9. Итоговый отчёт ===================================================
 
 
@@ -321,4 +331,5 @@ def build_report(movies: list[dict]) -> None:
 
 if __name__ == "__main__":
     run_loop_demos(movies)
+    run_generator_demo(movies)
     build_report(movies)
