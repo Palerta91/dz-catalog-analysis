@@ -164,6 +164,19 @@ def demo_find_first_masterpiece(movies: list[dict]) -> None:
         print("Шедевров не найдено")
 
 
+def run_loop_demos(movies: list[dict]) -> None:
+    """Показать работу for/continue и while/break/else."""
+    print('Фильмы без жанра "comedy":')
+    demo_skip_non_comedy(movies)
+
+    print("\nПервый фильм с рейтингом выше 9.0:")
+    demo_find_first_masterpiece(movies)
+
+    print("\nПроверка каталога без шедевров:")
+    demo_find_first_masterpiece(movies[:7])
+    print()
+
+
 # === Этап 4. Строки ===========================================================
 
 
@@ -307,4 +320,5 @@ def build_report(movies: list[dict]) -> None:
 
 
 if __name__ == "__main__":
+    run_loop_demos(movies)
     build_report(movies)
